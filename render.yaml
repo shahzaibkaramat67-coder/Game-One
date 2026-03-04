@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: duel-rush-server
+    runtime: node
+    rootDir: server
+    buildCommand: npm ci
+    startCommand: node src/server.js
+    healthCheckPath: /healthz
+    envVars:
+      - key: PORT
+        value: "10000"
+      - key: NODE_VERSION
+        value: "22.17.1"
+      - key: MONGO_TIMEOUT_MS
+        value: "2000"
+      - key: MONGODB_URI
+        sync: false
