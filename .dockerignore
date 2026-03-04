@@ -1,0 +1,20 @@
+# Keep Docker build context small (Railway builds from repo root)
+.git
+.gitignore
+**/.DS_Store
+
+# Unity project + docs are not needed for the server container
+unity
+docs
+
+# Don't send local deps / caches
+server/node_modules
+**/node_modules
+**/.cache
+**/.npm
+**/.yarn
+**/.pnpm-store
+
+# Local env files
+**/.env
+
