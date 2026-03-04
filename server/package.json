@@ -1,0 +1,25 @@
+{
+  "name": "duel-rush-server",
+  "version": "0.1.0",
+  "description": "Minimal authoritative WebSocket server for Duel Rush (matchmaking + simple arbitration)",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "keywords": [
+    "duel",
+    "pvp",
+    "websocket",
+    "matchmaking"
+  ],
+  "author": "Studio",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.18.2",
+    "mongodb": "^5.6.0",
+    "uuid": "^13.0.0",
+    "ws": "^8.13.0"
+  }
+}
