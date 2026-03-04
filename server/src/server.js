@@ -52,7 +52,7 @@ wss.on('connection', (ws, req) => {
 });
 
 (async () => {
-  server.listen(PORT, () => {
+  server.listen(PORT, '0.0.0.0', () => {
     const addr = server.address();
     const port = addr && typeof addr === 'object' ? addr.port : PORT;
     console.log(`Server listening on http://localhost:${port}`);
@@ -64,3 +64,16 @@ wss.on('connection', (ws, req) => {
     console.warn('DB connect failed:', e.message, '(continuing without DB)');
   }
 })();
+
+function shutdown(signal) {
+  console.log(`${signal} received, shutting down...`);
+  try {
+    wss.close();
+  } catch {}
+  server.close(() => process.exit(0));
+  // Force-exit if we can't close cleanly
+  setTimeout(() => process.exit(1), 10_000).unref?.();
+}
+
+process.on('SIGTERM', () => shutdown('SIGTERM'));
+process.on('SIGINT', () => shutdown('SIGINT'));

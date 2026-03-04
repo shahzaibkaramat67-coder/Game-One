@@ -9,7 +9,7 @@ COPY src ./src
 COPY test-client.js ./test-client.js
 
 ENV NODE_ENV=production
-EXPOSE 3000
+# Keep both common ports exposed; app uses $PORT at runtime.
+EXPOSE 3000 8080
 
 CMD ["node", "src/server.js"]
-
